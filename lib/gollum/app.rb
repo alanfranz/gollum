@@ -282,7 +282,7 @@ module Precious
         page_dir = settings.wiki_options[:page_file_dir].to_s
         redirect to("/#{clean_url(::File.join(page_dir, page.escaped_url_path))}")
       else
-        template_page = wiki_page('page template content')
+        template_page = wiki_page(page_dir.empty? ? 'page template content' : "#{page_dir}/page template content")
         if template_page.page
           text_data = template_page.page.text_data
           @content = text_data
