@@ -263,7 +263,8 @@ module Precious
     end
 
     get '/create/*' do
-      wikip = wiki_page(params[:splat].first.gsub('+', '-'))
+      pageparam = params[:splat].first.gsub('+', '-')
+      wikip = wiki_page(pageparam)
       @name = wikip.name.to_url
       @path = wikip.path
 
@@ -281,6 +282,11 @@ module Precious
         page_dir = settings.wiki_options[:page_file_dir].to_s
         redirect to("/#{clean_url(::File.join(page_dir, page.escaped_url_path))}")
       else
+        template_page = wiki_page('page template content')
+        if template_page.page
+          text_data = template_page.page.text_data
+          @content = text_data
+        end
         mustache :create
       end
     end

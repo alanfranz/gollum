@@ -3,7 +3,7 @@ module Precious
     class Create < Layout
       include Editable
 
-      attr_reader :page, :name
+      attr_reader :page, :name, :content
 
       def title
         "Create a new page"
