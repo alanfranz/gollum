@@ -11,6 +11,7 @@ require 'gollum'
 require 'gollum/views/layout'
 require 'gollum/views/editable'
 require 'gollum/views/has_page'
+require 'gollum/plugin'
 
 require File.expand_path '../helpers', __FILE__
 
@@ -520,3 +521,7 @@ end
 # source code, think it again once it works.
 plugins_dir = File.expand_path('plugins', File.dirname(__FILE__))
 require_all plugins_dir
+Precious::Plugin.plugins.each do |plugin_class|
+  plugin_class.new.perform
+end
+# plugin setup end
