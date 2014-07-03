@@ -5,7 +5,6 @@ require 'gollum-lib'
 require 'mustache/sinatra'
 require 'useragent'
 require 'stringex'
-require 'require_all'
 
 require 'gollum'
 require 'gollum/views/layout'
@@ -516,12 +515,3 @@ module Precious
     end
   end
 end
-
-# setup plugins, basic version - it would be better to put them OUTSIDE
-# source code, think it again once it works.
-plugins_dir = File.expand_path('plugins', File.dirname(__FILE__))
-require_all plugins_dir
-Precious::Plugin.plugins.each do |plugin_class|
-  plugin_class.new.perform
-end
-# plugin setup end

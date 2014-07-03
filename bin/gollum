@@ -16,6 +16,7 @@ HELP
 require 'optparse'
 require 'rubygems'
 require 'gollum'
+require 'require_all'
 
 exec         = {}
 options      = { 'port' => 4567, 'bind' => '0.0.0.0' }
@@ -183,6 +184,18 @@ else
     cfg = File.join(Dir.getwd, cfg) unless cfg.slice(0) == File::SEPARATOR
     require cfg
   end
+
+  # setup plugins, basic version - it would be better to put them OUTSIDE
+  # source code, think it again once it works.
+  plugins_dir = File.expand_path('../plugins', File.dirname(__FILE__))
+  puts "requiring from #{plugins_dir}"
+  require_all plugins_dir
+  Precious::Plugin.plugins.each do |plugin_class|
+    puts "now registering #{plugin_class}"
+    plugin_class.new.perform
+  end
+  # plugin setup end
+
 
   base_path = wiki_options[:base_path]
 
