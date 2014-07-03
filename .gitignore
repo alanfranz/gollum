@@ -6,4 +6,4 @@ Gemfile.lock
 *.gem
 *.swp
 .*
-lib/gollum/plugins
+plugins
