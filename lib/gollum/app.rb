@@ -5,6 +5,7 @@ require 'gollum-lib'
 require 'mustache/sinatra'
 require 'useragent'
 require 'stringex'
+require 'require_all'
 
 require 'gollum'
 require 'gollum/views/layout'
@@ -12,6 +13,7 @@ require 'gollum/views/editable'
 require 'gollum/views/has_page'
 
 require File.expand_path '../helpers', __FILE__
+
 
 #required to upload bigger binary files
 Gollum::set_git_timeout(120)
@@ -513,3 +515,8 @@ module Precious
     end
   end
 end
+
+# setup plugins, basic version - it would be better to put them OUTSIDE
+# source code, think it again once it works.
+plugins_dir = File.expand_path('plugins', File.dirname(__FILE__))
+require_all plugins_dir
