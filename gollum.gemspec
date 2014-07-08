@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = %w[README.md LICENSE]
 
   s.add_dependency 'gollum-lib', '~> 3.0'
-  s.add_dependency 'github-markdown', '~> 0.6.5'
+  s.add_dependency 'github-markdown-jekyll', '~> 0.7'
   s.add_dependency 'sinatra', '~> 1.4', '>= 1.4.4'
   s.add_dependency 'mustache', ['>= 0.99.5', '< 1.0.0']
   s.add_dependency 'useragent', '~> 0.10.0'
