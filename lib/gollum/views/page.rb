@@ -21,6 +21,10 @@ module Precious
         content_without_page_header(@content)
       end
 
+      def is_draft
+        title.start_with?('_drafts/')
+      end
+
       def author
         page_versions = @page.versions
         first         = page_versions ? page_versions.first : false
