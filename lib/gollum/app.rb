@@ -165,7 +165,7 @@ module Precious
         tempfile = params[:file][:tempfile]
       end
 
-      dir      = wiki.per_page_uploads ? params[:upload_dest] : 'uploads'
+      dir      = wiki.per_page_uploads ? params[:upload_dest] : 'source/images'
       ext      = ::File.extname(fullname)
       format   = ext.split('.').last || 'txt'
       filename = ::File.basename(fullname, ext)
